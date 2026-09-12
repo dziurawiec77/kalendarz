@@ -1,0 +1,24 @@
+Kalendarz 2027 — kopia do wrzucenia na hosting
+==============================================
+
+NETLIFY (najprościej, za darmo)
+1. Wejdź na: https://app.netlify.com/drop
+2. Zaloguj się mailem albo kontem Google.
+3. Rozpakuj ten ZIP na komputerze.
+4. Wejdź do folderu "kalendarz-2027".
+5. Chwyć CAŁY ten folder i upuść go na duży prostokąt na stronie Netlify.
+6. Dostaniesz link typu: cos-tam.netlify.app
+
+OVH
+1. Zaloguj się do panelu OVH.
+2. Otwórz Menedżer plików albo FTP dla swojej domeny.
+3. Wejdź do folderu www (czasem nazywa się public_html).
+4. Wgraj CAŁĄ zawartość folderu kalendarz-2027
+   (index.html, photos, assets, .htaccess i resztę).
+5. Plik .htaccess MUSI leżeć obok index.html.
+   To on sprawia, że miesiące i „Drukuj rok” działają.
+6. Wejdź na swoją domenę.
+
+Jeśli widać tylko okładkę, a miesiące dają 404:
+- sprawdź, czy .htaccess na pewno wylądował na serwerze
+  (niektóre programy FTP ukrywają pliki zaczynające się od kropki).

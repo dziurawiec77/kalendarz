@@ -1,0 +1,8 @@
+{
+  "name": "Kalendarz 2027",
+  "short_name": "Kalendarz",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1C1712",
+  "theme_color": "#1C1712"
+}

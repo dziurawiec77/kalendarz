@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# nie ruszaj prawdziwych plików (zdjęcia, css, js)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# resztę adresów (np. /m/styczen, /druk, /kolofon) pokaż jako stronę główną
+RewriteRule ^ index.html [L]

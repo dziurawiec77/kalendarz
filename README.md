@@ -1,20 +1,19 @@
 # Kalendarz 2027
 
-Przeglądarkowy kalendarz po polsku — święta państwowe, siatka od poniedziałku, edycja artystyczna.
+Przeglądarkowy kalendarz po polsku — święta państwowe, edycja artystyczna.
 
-## Status wrzucania
+Repozytorium: https://github.com/dziurawiec77/kalendarz
 
-W repo są już:
-- pliki hostingu (`.htaccess`, `_redirects`)
+## Co jest w repo
+
+- `index.html` — strona główna
+- `assets/` — style i skrypty
+- `.htaccess` i `_redirects` — pod OVH / Netlify
 - favicon, instrukcja
-- część skryptów w `assets/`
 
-Jeszcze do uzupełnienia (duże pliki):
-- `index.html`
-- `assets/styles-BOVKEO01.css`
-- `assets/utils-DHRPmwpE.js`
-- `assets/index-JvsC4EOt.js`
-- folder `photos/` (12 zdjęć miesięcy + okładka)
-- `og.jpg`
+## Zdjęcia
 
-Pełna kopia 1:1 jest w ZIP-ie z czatu Grok. Na OVH / Netlify można wrzucać tę paczkę od razu, bez czekania na dokończenie GitHuba.
+Folder `photos/` (12 miesięcy + okładka) nie wchodzi przez konektor Grok (JPG są za ciężkie jako binarne).
+Pełna kopia ze zdjęciami jest w ZIP-ie z czatu — to wrzucasz na OVH przez Total Commander.
+
+Dopóki żyje https://kalendarz-pl07.grok.me/ można podglądać oryginał stamtąd.

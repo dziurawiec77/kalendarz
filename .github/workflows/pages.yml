@@ -27,6 +27,8 @@ jobs:
           cat .photo-parts/part-*.bin > /tmp/kalendarz-fotografie.zip
           echo "defabe4706d10a21aa680526d698392b5367d12c8784f341c322d861dfea93f4  /tmp/kalendarz-fotografie.zip" | sha256sum --check
           unzip -q -o /tmp/kalendarz-fotografie.zip -d public_site
+          # Zatwierdzona nowa fotografia października nadpisuje wersję z archiwum.
+          cp photos/pazdziernik.jpg public_site/photos/pazdziernik.jpg
           for month in styczen luty marzec kwiecien maj czerwiec lipiec sierpien wrzesien pazdziernik listopad grudzien okladka okladka-mobile; do
             test -s "public_site/photos/$month.jpg" || { echo "::error::Brakuje photos/$month.jpg"; exit 1; }
           done

@@ -1,0 +1,41 @@
+name: Publikacja Kalendarza 2027
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Przygotuj witrynę ze zdjęciami
+        run: |
+          mkdir -p public_site/assets
+          cp index.html favicon.svg public_site/
+          cp assets/styles-BOVKEO01.css public_site/assets/
+          if [ -f kalendarz_2027_fotografie_zatwierdzone.zip ]; then
+            unzip -q -o kalendarz_2027_fotografie_zatwierdzone.zip -d public_site
+          else
+            echo "::error::Brakuje kalendarz_2027_fotografie_zatwierdzone.zip — wgraj archiwum do głównego katalogu repozytorium"
+            exit 1
+          fi
+          for month in styczen luty marzec kwiecien maj czerwiec lipiec sierpien wrzesien pazdziernik listopad grudzien okladka; do
+            test -s "public_site/photos/$month.jpg" || { echo "::error::Brakuje photos/$month.jpg"; exit 1; }
+          done
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public_site
+      - id: deployment
+        name: Wdrożenie
+        uses: actions/deploy-pages@v4

@@ -23,13 +23,11 @@ jobs:
           mkdir -p public_site/assets
           cp index.html favicon.svg public_site/
           cp assets/styles-BOVKEO01.css public_site/assets/
-          if [ -f kalendarz_2027_fotografie_zatwierdzone.zip ]; then
-            unzip -q -o kalendarz_2027_fotografie_zatwierdzone.zip -d public_site
-          else
-            echo "::error::Brakuje kalendarz_2027_fotografie_zatwierdzone.zip — wgraj archiwum do głównego katalogu repozytorium"
-            exit 1
-          fi
-          for month in styczen luty marzec kwiecien maj czerwiec lipiec sierpien wrzesien pazdziernik listopad grudzien okladka; do
+          # Zdjęcia trzymane w częściach, aby nie przekraczać limitu transferu API.
+          cat .photo-parts/part-*.bin > /tmp/kalendarz-fotografie.zip
+          echo "defabe4706d10a21aa680526d698392b5367d12c8784f341c322d861dfea93f4  /tmp/kalendarz-fotografie.zip" | sha256sum --check
+          unzip -q -o /tmp/kalendarz-fotografie.zip -d public_site
+          for month in styczen luty marzec kwiecien maj czerwiec lipiec sierpien wrzesien pazdziernik listopad grudzien okladka okladka-mobile; do
             test -s "public_site/photos/$month.jpg" || { echo "::error::Brakuje photos/$month.jpg"; exit 1; }
           done
       - uses: actions/configure-pages@v5

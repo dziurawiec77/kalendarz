@@ -33,19 +33,40 @@
   .month-days span{min-height:23px}
   @page{size:A4 portrait;margin:10mm}
 }
+
+/* Kalendarz 2027: responsywna okładka i pełne zdjęcia bez sztucznych obramowań. */
+.calendar-hero {position:relative; min-height:min(88dvh,840px); isolation:isolate; background:#1c1712}
+.calendar-hero-media {position:absolute; inset:0; width:100%; height:100%; display:block}
+.calendar-hero-photo {display:block; width:100%; height:100%; object-fit:contain; object-position:center center}
+.calendar-hero-overlay,.calendar-hero-gradient {pointer-events:none}
+.calendar-hero-copy {min-height:min(88dvh,840px)}
+article[id] > img {display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; object-position:center; background:transparent}
+@media (max-width:700px) {
+  .calendar-hero {display:flex; flex-direction:column; min-height:0; overflow:hidden}
+  .calendar-hero-nav {order:0; position:relative; top:auto; z-index:2; background:#1c1712; flex-shrink:0}
+  .calendar-hero-media {order:1; position:relative; inset:auto; width:100%; height:auto; display:block; background:#1c1712}
+  .calendar-hero-photo {position:relative; display:block; width:100%; height:auto; max-height:none; object-fit:contain}
+  .calendar-hero-overlay,.calendar-hero-gradient {display:none!important}
+  .calendar-hero-copy {order:2; min-height:0; width:100%; display:flex; justify-content:flex-start; background:#1c1712; padding:1.4rem 1.5rem 2rem; box-sizing:border-box}
+  .calendar-hero-copy h1 {font-size:clamp(2.5rem,11vw,3.75rem); overflow-wrap:normal}
+}
+
 </style>
 </head>
 <body>
 <main class="relative bg-ivory">
-<section class="relative min-h-[100dvh] overflow-hidden bg-ink">
-<img src="./photos/okladka.jpg" alt="Okładka kalendarza 2027" class="absolute inset-0 h-full w-full object-contain" style="object-position:52% 24%"/>
-<div class="absolute inset-0 bg-ink/40"></div>
-<div class="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/45"></div>
-<header class="no-print sticky top-0 z-40 flex items-center justify-between gap-3 px-4 py-3 sm:px-6 bg-ink/40 text-paper backdrop-blur-md">
+<section class="calendar-hero relative min-h-[100dvh] overflow-hidden bg-ink">
+<picture class="calendar-hero-media">
+<source media="(max-width: 700px)" srcset="./photos/okladka-mobile.jpg"/>
+<img src="./photos/okladka.jpg" alt="Trzy bohaterki Kalendarza 2027" class="calendar-hero-photo" fetchpriority="high"/>
+</picture>
+<div class="calendar-hero-overlay absolute inset-0 bg-ink/40"></div>
+<div class="calendar-hero-gradient absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/25 to-ink/45"></div>
+<header class="calendar-hero-nav no-print sticky top-0 z-40 flex items-center justify-between gap-3 px-4 py-3 sm:px-6 bg-ink/40 text-paper backdrop-blur-md">
 <a class="font-display text-lg tracking-wide text-paper" href="./">Kalendarz <span class="text-gold">2027</span></a>
 <a href="#swieta" class="text-caption tracking-widest uppercase text-paper/80">Święta</a>
 </header>
-<div class="relative z-10 flex min-h-[100dvh] flex-col justify-end px-6 pt-24 pb-16 sm:px-12 lg:px-20">
+<div class="calendar-hero-copy relative z-10 flex min-h-[100dvh] flex-col justify-end px-6 pt-24 pb-16 sm:px-12 lg:px-20">
 <p class="text-caption tracking-[0.4em] text-gold-soft uppercase">Edycja artystyczna</p>
 <h1 class="mt-3 font-display text-6xl leading-none font-medium text-paper sm:text-8xl">Kalendarz<span class="mt-2 block italic text-gold-soft">2027</span></h1>
 <div class="mt-6 h-px w-24 bg-gold"></div>

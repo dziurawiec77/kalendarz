@@ -1,21 +1,16 @@
 # Kalendarz 2027
 
-Polski kalendarz artystyczny z trzema fikcyjnymi bohaterkami, zdjęciami sezonowymi, siatkami dni oraz świętami. Strona jest statyczna, bez logowania i bazy danych.
+Polski kalendarz artystyczny z trzema fikcyjnymi bohaterkami, zdjęciami sezonowymi, siatkami dni oraz świętami. Prosta strona statyczna, bez logowania i bazy danych.
 
-**Docelowa strona GitHub Pages:** https://dziurawiec77.github.io/kalendarz/
+**Strona:** https://dziurawiec77.github.io/kalendarz/
 
 ## Publikacja
+W ustawieniach repozytorium GitHub Pages jako źródło wybrano GitHub Actions. Workflow `.github/workflows/pages.yml` automatycznie publikuje zmiany z gałęzi `main`.
 
-Do uruchomienia strony potrzebny jest plik **`kalendarz_2027_fotografie_zatwierdzone.zip`** zawierający katalog `photos/` i 13 fotografii JPG. Wgraj archiwum do głównego katalogu repozytorium (GitHub → Add file → Upload files). Workflow `.github/workflows/pages.yml` automatycznie rozpakuje zdjęcia, sprawdzi wszystkie miesiące i opublikuje gotową stronę.
+Pakiet fotografii (12 miesięcy, oryginalna okładka i osobny kadr mobilny) jest przechowywany w `.photo-parts/part-*.bin`. Workflow łączy części w archiwum ZIP, sprawdza sumę SHA-256, rozpakowuje i sprawdza komplet zdjęć. Takie przechowywanie wykorzystano ze względu na ograniczenie jednorazowego przesyłania dużych plików przez API GitHub; nie należy edytować poszczególnych części ręcznie.
 
-W ustawieniach repozytorium wybierz **Settings → Pages → Build and deployment → Source: GitHub Actions**. Publiczne repozytorium może być publikowane bezpłatnie na GitHub Pages.
+## Wygląd
+Każda karta miesiąca wyświetla zdjęcie 4:5 wypełniające kadr, bez rozmytego obramowania. Dla fotografii źródłowych o węższych proporcjach brakujący fragment scenerii został delikatnie przedłużony po bokach, aby nie ucinać głów ani stóp. Okładka ma wariant na komputery (`okladka.jpg`) oraz pełnopostaciowy wariant na telefony (`okladka-mobile.jpg`).
 
-## Grafika
-
-Dwanaście zdjęć miesięcznych ma proporcje 4:5. Okładka wykorzystuje oryginalną grupową fotografię referencyjną. Przygotowane obrazy nie ucinają głów ani stóp, a grudniowa fotografia przedstawia trzy bohaterki na kanapie przy choince.
-
-Nazwy plików: `styczen.jpg`, `luty.jpg`, `marzec.jpg`, `kwiecien.jpg`, `maj.jpg`, `czerwiec.jpg`, `lipiec.jpg`, `sierpien.jpg`, `wrzesien.jpg`, `pazdziernik.jpg`, `listopad.jpg`, `grudzien.jpg`, `okladka.jpg`.
-
-## Funkcjonalność
-
-Kalendarz wykorzystuje czysty HTML, CSS i JS; siatki dni 2027 oraz zaznaczenia świąt tworzą się bez brakujących modułów starej wersji. Dostępna jest opcja drukowania/zapisu do PDF.
+## Funkcje
+Polska siatka dni 2027 rozpoczynająca się w poniedziałek, podkreślenie weekendów i świąt, drukowanie/zapis do PDF, układ responsywny. Kod w `index.html` nie wymaga biblioteki JavaScript ani serwera aplikacji.
